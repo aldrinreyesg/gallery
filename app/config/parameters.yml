@@ -1,0 +1,13 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: galleryt1
+    database_user: galleryt1
+    database_password: test1
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: bf1f55218075803d47cf796fe9dc9fdeb494672c
+    csv_url: "https://docs.google.com/spreadsheets/d/1PCrwoc4CAAMUpHbYOvd3DauPpyVZXhrpj4iQLndzj58/export?format=csv&id=1PCrwoc4CAAMUpHbYOvd3DauPpyVZXhrpj4iQLndzj58&gid=0"
