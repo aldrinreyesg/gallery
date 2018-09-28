@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% block title %}Gallery - Login{% endblock %}
+{% block stylesheets %}{% endblock %}
+{% set page_title="Login" %}
+{% block body %}
+	{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+  {% endif %}
+     <div class="mx-auto p-4 rounded shadow w-50 mb-3">
+            <form action="{{ path('login') }}" method="post">
+                <div class="form-group">
+                    <label for="uname">Nombre de Usuario</label>
+                    <input type="text" class="form-control" id="uname" name="_username" placeholder="Nombre de Usuario" value="{{ last_username }}" required autofocus>
+                  </div>
+                  <div class="form-group">
+                    <label for="pass1">Contraseña</label>
+                    <input type="password" class="form-control" id="pass1" name="_password" placeholder="Password" required>
+                  </div>
+                  <input type="hidden" name="_target_path" value="/user" />
+                  <button type="submit" class="btn btn-primary">Entrar</button>
+            </form>
+        </div>
+    
+{% endblock %}
+{% block javascripts %}{% endblock %}

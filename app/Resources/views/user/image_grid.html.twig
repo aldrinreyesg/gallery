@@ -1,0 +1,36 @@
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Options</th>
+        <th scope="col">id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Url</th>
+        <th scope="col">Name</th>
+        <th scope="col">Valid</th>
+        <th scope="col">Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for image in images %}
+      <tr>
+        <td scope="row" class="d-flex justify-content-around">
+          <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#deleteModal" id="del_{{ image.id }}">
+            <i class="fas fa-trash text-primary"></i>
+              
+          </button>
+          <button type="button" class="btn btn-outline-light" onClick="javascript:window.location.href='/edit/{{ image.id }}'">
+            <i class="fas fa-pen text-primary"></i>
+          </button>
+        </td>
+        <th>{{ image.id }}</th>
+        <td id="tit_{{ image.id }}">{{ image.title }}</td>
+        <td>{{ image.description }}</td>
+        <td>{{ image.image_url|length > 50 ? image.image_url|slice(0, 50) ~ '...' ~ image.image_url|slice(image.image_url|length-5, image.image_url|length) : image.image_url  }}</td>
+        <td>{{ image.image_name }}</td>
+        <td><b class="{{ image.valid ? 'text-success' : 'text-danger' }}">{{ image.valid ? 'Valid' : 'Invalid' }}</b></td>
+        <td>{{ image.created|date("Y/m/d") }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>

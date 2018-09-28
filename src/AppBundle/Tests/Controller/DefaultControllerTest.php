@@ -6,13 +6,16 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class DefaultControllerTest extends WebTestCase
 {
-    public function testIndex()
+    public function testHome()
     {
         $client = static::createClient();
-
-        $crawler = $client->request('GET', '/app/example');
-
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertTrue($crawler->filter('html:contains("Homepage")')->count() > 0);
+        $crawler = $client->request('GET', '/');
+        $this->assertTrue($crawler->filter('html:contains("Listado")')->count() > 0);
+    }
+    public function testImage()
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/image');
+        $this->assertTrue($crawler->filter('html:contains("Designed")')->count() > 0);
     }
 }

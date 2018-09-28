@@ -1,5 +1,32 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Gallery - Home{% endblock %}
+{% block stylesheets %}{% endblock %}
+{% set page_title="Listado de Imágenes" %}
 {% block body %}
-    Homepage.
+	
+        <div class="d-flex flex-wrap">
+            {% for image in images %}
+            <div class="card m-2" style="width: 18rem;">
+              <a href="{{ path('image', {'id': image.id}) }}">
+                <img class="card-img-top img-fluid" src="/images/{{ (image.image_name == "image-not-found.png") ? image.image_name : 'gallery/thumbnail/' ~ image.image_name }}" alt="{{ image.title }}" style="width:300px; height:200px;">
+              </a>
+              <div class="card-body">
+                <h5 class="card-title text-center">{{ image.title }}</h5>
+                <p class="card-text text-justify">{{ image.description }}</p>
+                <div class="d-flex justify-content-between">
+                  <p class="mb-0 text-black-50">{{ image.created|date("Y/m/d") }}</p>
+                  <!-- <p class="mb-0 {{ image.valid ? 'text-success' : 'text-danger' }}">{{ image.valid ? 'Valid' : 'Invalid' }}</p> -->
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+        </div>
+    
+{% endblock %}
+{% block javascripts %}
+  $(document).ready(function(){
+    $("#loginBtn").on("click", function(){
+      $(location).attr('href','/login');
+    })
+  });
 {% endblock %}

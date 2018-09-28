@@ -1,3 +1,70 @@
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+
+home:
+    path:     /
+    defaults: { _controller: AppBundle:Default:home}
+
+image:
+    path:     /image/{id}
+    defaults: { _controller: AppBundle:Default:image}
+    requirements:
+        id:     '\d+'
+
+user:
+    path:     /user
+    defaults: { _controller: AppBundle:User:show}
+
+user_edit:
+    path:     /edit/{id}
+    defaults: { _controller: AppBundle:User:edit}
+    requirements:
+        id:     '\d+'
+
+user_update:
+    path:     /user/{id}
+    defaults: { _controller: AppBundle:User:update}
+    requirements:
+        id:     '\d+'
+
+user_upload:
+    path:     /upload
+    defaults: { _controller: AppBundle:User:upload}
+    methods:  [POST]
+
+user_delete:
+    path:     /delete/{id}
+    defaults: { _controller: AppBundle:User:delete}
+    requirements:
+        id:     '\d+'
+
+admin:
+    path:     /admin
+    defaults: { _controller: AppBundle:Admin:show}
+    
+admin_import:
+    path:     /admin/import
+    defaults: { _controller: AppBundle:Admin:import}
+    methods:  [POST]
+
+admin_export:
+    path:     /admin/export
+    defaults: { _controller: AppBundle:Admin:export}
+
+admin_clean:
+    path:     /admin/clean
+    defaults: { _controller: AppBundle:Admin:clean}
+
+admin_aprove:
+    path:     /aprove/{id}
+    defaults: { _controller: AppBundle:Admin:aprove}
+    requirements:
+        id:     '\d+'
+
+login:
+    path:     /login
+    defaults: { _controller: AppBundle:Security:login }
+
+logout:
+    path:     /logout

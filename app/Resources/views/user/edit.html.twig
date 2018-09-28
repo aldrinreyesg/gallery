@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+{% block title %}Gallery - Admin{% endblock %}
+{% block stylesheets %}{% endblock %}
+{% set page_title="Editor de Imágenes" %}
+{% block messages %}
+  {% if messages is defined %}
+    {% for message in messages %}
+      <p>{{ message.text }}</p>
+    {% endfor %}
+  {% endif %}
+{% endblock %}
+{% block body %}
+
+  <form id="formEdi" action="{{ path('user_update', {"id" : images.id }) }}" method="get">
+  	<div class="row ml-0">
+  		<div class="col-md-6">
+	    	<img class="img-fluid img-thumbnail mx-auto d-block" src="{{ images.image_url }}" alt="{{ images.title }}" style="width:300px; height:300px;">
+	    </div>
+  		<div class="col-md-6">
+		    <div class="form-group">
+		      <label for="id">id</label>
+		      <input type="text" class="form-control" id="id" name="id" placeholder="id" value="{{ images.id }}" disabled="true">
+		    </div>
+		    <div class="form-group">
+		      <label for="valid">Valid</label>
+		      <input type="text" class="form-control" id="valid" name="valid" placeholder="Valid" value="{{ images.valid ? 'true': 'false' }}" disabled="true">
+		    </div>
+		    <div class="form-group">
+		      <label for="created">Created</label>
+		      <input type="text" class="form-control" id="created" name="created" placeholder="Created" value="{{ images.created|date("Y/m/d") }}" disabled="true">
+		    </div>
+	    </div>
+    </div>
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" name="title" placeholder="Title" value="{{ images.title }}">
+    </div>
+    <div class="form-group">
+      <label for="desc">Description</label>
+      <input type="text" class="form-control" id="desc" name="desc" placeholder="Description" value="{{ images.description }}">
+    </div>
+    <div class="form-group">
+      <label for="url">Url</label>
+      <input type="text" class="form-control" id="url" name="url" placeholder="Url" value="{{ images.image_url }}">
+    </div>
+    <div class="mt-2">
+      <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+  </form>
+{% endblock %}
+{% block javascripts %}
+{% endblock %}

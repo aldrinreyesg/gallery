@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block title %}Gallery - image.image_name{% endblock %}
+{% block stylesheets %}{% endblock %}
+{% block body %}
+
+  <div class="border m-2">
+	<div class="row col-12">
+	  <div class="mx-auto">
+	  	<img class="img-fluid" src="/images/{{ (image.image_name == "image-not-found.png") ? image.image_name :  'gallery/' ~ image.image_name }}"" alt="{{ image.title }}">
+	  </div>
+	</div>
+	<div class="row">
+	  <div class="col-12">
+	    <h5 class="card-title text-center border-top border-bottom bg-dark text-white p-2 m-0">{{ image.title }}</h5>
+	    <p class="card-text text-justify bg-secondary text-white p-2">{{ image.description }}</p>
+	  </div>
+	</div>
+  </div>
+{% endblock %}
+{% block javascripts %}
+
+{% endblock %}

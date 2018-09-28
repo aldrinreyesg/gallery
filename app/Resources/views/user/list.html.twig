@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% block title %}Gallery - Admin{% endblock %}
+{% block stylesheets %}{% endblock %}
+{% set page_title="Editor de Imágenes" %}
+{% block messages %}
+  {% if messages is defined %}
+    {% for message in messages %}
+      <p>{{ message.text }}</p>
+    {% endfor %}
+  {% endif %}
+{% endblock %}
+{% block body %}
+  <div class="row">
+    <nav class="nav mb-2 col">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
+        Subir Imagen
+      </button>
+    </nav>
+    <div class="col">
+      <p class="text-right">Hay <span class="font-weight-bold text-success rounded border p-1">{{ images|length }}</span> imágenes en la galería</p>
+    </div>
+  </div>
+  {% include 'user/image_grid.html.twig' %}
+  {% include 'user/upload_modal.html.twig' %}
+  {% include 'user/delete_modal.html.twig' %}
+  
+{% endblock %}
+{% block javascripts %}
+  $(document).ready(function() {
+    $("button").on('click', function(){
+      if($(this).attr('id')){
+        var op = $(this).attr('id').substring(0,3);
+        var id = $(this).attr('id').substring(4, $(this).attr('id').length);
+        if(op=='del'){
+          $('#formDel').attr('action', '/delete/'+id);
+          $("#file2Del").html($("#tit_"+id).html());
+        }
+      }
+    });
+    $("#pills-url-tab").on("click", function(){
+      $("#source").val('url');
+    });
+    $("#pills-local-tab").on("click", function(){
+      $("#source").val('local');
+    });
+  });
+{% endblock %}

@@ -35,6 +35,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        csv_url: "https://docs.google.com/spreadsheets/d/1PCrwoc4CAAMUpHbYOvd3DauPpyVZXhrpj4iQLndzj58/export?format=csv&id=1PCrwoc4CAAMUpHbYOvd3DauPpyVZXhrpj4iQLndzj58&gid=0"
 
 # Assetic Configuration
 assetic:

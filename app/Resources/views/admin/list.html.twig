@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% block title %}Gallery - Admin{% endblock %}
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/animationload.css') }}" />
+{% endblock %}
+{% set page_title="Administrador de Imágenes" %}
+{% block messages %}
+  {% if messages is defined %}
+    {% for message in messages %}
+      <p>{{ message.text }}</p>
+    {% endfor %}
+  {% endif %}
+{% endblock %}
+{% block body %}
+  <div class="row">
+  	<nav class="nav col">
+      <a class="nav-link active" href="{{ path('admin') }}">Actualizar</a>
+      <a class="nav-link" href="#" id="importBtn">Importar</a>
+      <a class="nav-link" href="{{ path('admin_export') }}">Exportar</a>
+      <a class="nav-link" href="#" id="cleanGallBtn">Limpiar</a>
+    </nav>
+    <div class="col">
+      <p class="text-right">Hay <span class="font-weight-bold text-success rounded border p-1">{{ images|length }}</span> imágenes en la galería</p>
+    </div>
+  </div>
+  {% include 'admin/image_grid.html.twig' %}
+  {% include 'admin/clean_modal.html.twig' %}
+  {% include 'default/animationload_modal.html.twig' %}
+  {% include 'admin/import_modal.html.twig' %}
+{% endblock %}
+{% block javascripts %}
+  $(document).ready(function(){
+    $("#cleanGallBtn").on("click", function(){
+      $("#cleanModal").modal('toggle');
+    });
+    $("#cleanSub").on("click", function(){
+      $("#loaderModal").modal('toggle');
+    });
+    $("#importBtn").on("click", function(){
+      $("#importModal").modal('toggle');
+    });
+    $("#importSub").on("click", function(){
+      $("#importModal").modal('toggle');
+      $("#loaderText").html("Importando datos...");
+      $("#loaderModal").modal('toggle');
+    });
+  });
+{% endblock %}
